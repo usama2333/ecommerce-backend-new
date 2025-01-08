@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/adminRoutes');
 
 dotenv.config();
 
@@ -26,5 +27,8 @@ process.on('unhandledRejection', (err) => {
 
 // Routes
 app.use('/api/auth', authRoutes);  // Register and login routes
+
+// Admin routes
+app.use('/admin', adminRoutes);
 
 module.exports = app;
