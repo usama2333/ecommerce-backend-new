@@ -2,9 +2,8 @@ const express = require('express');
 
 const verifyToken = require('../middleware/authMiddleware');
 const { verifyAdmin } = require('../middleware/verifyAdmin');
-
 const { roles } = require('../models/user');
-
+const { getAllUsers } = require('../controllers/adminController');
 const router = express.Router();
 
 router.get('/dashboard', verifyToken, verifyAdmin, (req, res) => {
@@ -14,5 +13,8 @@ router.get('/dashboard', verifyToken, verifyAdmin, (req, res) => {
 
     return res.status(201).json({message: 'Welcome to the Admin Dashboard'});
 }) 
+
+// getAll users
+router.get('/users', verifyToken, verifyAdmin, getAllUsers);
 
 module.exports = router;
